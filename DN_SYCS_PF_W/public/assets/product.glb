@@ -1,0 +1,9 @@
+# This is a placeholder file for the product mock model
+# In a real implementation, this would be a binary GLB file
+# For development, you can replace this with an actual GLB model
+# 
+# To create a GLB model:
+# 1. Create a simple product mockup (phone, laptop, device, etc.)
+# 2. Export as GLB with Draco compression
+# 3. Keep geometry simple for performance
+# 4. Include basic materials

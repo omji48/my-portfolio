@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "type": "Font",
+    "generator": "FontLoader",
+    "version": 4.5
+  },
+  "glyphs": {},
+  "familyName": "Helvetiker",
+  "ascender": 2000,
+  "descender": -500,
+  "underlinePosition": 0,
+  "underlineThickness": 0,
+  "boundingBox": {
+    "xMin": -1000,
+    "yMin": -500,
+    "xMax": 2000,
+    "yMax": 2000
+  },
+  "resolution": 1000,
+  "kerning": {},
+  "generated": true
+}

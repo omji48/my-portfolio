@@ -1,0 +1,10 @@
+# This is a placeholder file for the 3D sculpture model
+# In a real implementation, this would be a binary GLB file
+# For development, you can replace this with an actual GLB model
+# 
+# To create a GLB model:
+# 1. Use Blender, Maya, or similar 3D software
+# 2. Create a sculptural object (abstract form, geometric shape, etc.)
+# 3. Export as GLB with Draco compression
+# 4. Optimize for web (keep under 2MB)
+# 5. Include materials and textures
