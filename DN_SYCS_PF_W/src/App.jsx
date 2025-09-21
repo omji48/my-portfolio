@@ -10,50 +10,58 @@ import Nav from './components/Nav'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 
+// Matrix Character Component
+const MatrixChar = ({ initialX, initialY, initialZ }) => {
+  const textRef = useRef()
+  const [char] = useState(String.fromCharCode(0x30A0 + Math.random() * 96))
+  const [speed] = useState(Math.random() * 0.03 + 0.02)
+
+  useFrame(() => {
+    if (textRef.current) {
+      textRef.current.position.y -= speed
+      if (textRef.current.position.y < -20) {
+        textRef.current.position.y = 30
+        textRef.current.position.x = (Math.random() - 0.5) * 50
+      }
+    }
+  })
+
+  return (
+    <Text
+      ref={textRef}
+      position={[initialX, initialY, initialZ]}
+      fontSize={0.5}
+      color="#22c55e"
+    >
+      {char}
+    </Text>
+  )
+}
+
 // Interactive Matrix Rain Effect
-const MatrixRain = ({ mouse }) => {
-  const meshRef = useRef()
-  const materialRef = useRef()
+const MatrixRain = () => {
   const [characters] = useState(() => {
     const chars = []
     for (let i = 0; i < 80; i++) {
       chars.push({
+        id: i,
         x: (Math.random() - 0.5) * 50,
         y: Math.random() * 30 + 10,
-        z: (Math.random() - 0.5) * 30,
-        speed: Math.random() * 0.03 + 0.02,
-        char: String.fromCharCode(0x30A0 + Math.random() * 96)
+        z: (Math.random() - 0.5) * 30
       })
     }
     return chars
   })
 
-  useFrame((state) => {
-    if (materialRef.current) {
-      materialRef.current.opacity = 0.25 + Math.sin(state.clock.elapsedTime * 1.2) * 0.1
-    }
-    
-    characters.forEach((char, i) => {
-      char.y -= char.speed
-      if (char.y < -20) {
-        char.y = 30
-        char.x = (Math.random() - 0.5) * 50
-      }
-    })
-  })
-
   return (
     <group>
-      {characters.map((char, i) => (
-        <Text
-          key={i}
-          position={[char.x, char.y, char.z]}
-          fontSize={0.5}
-          color="#22c55e"
-          ref={i === 0 ? materialRef : null}
-        >
-          {char.char}
-        </Text>
+      {characters.map((char) => (
+        <MatrixChar
+          key={char.id}
+          initialX={char.x}
+          initialY={char.y}
+          initialZ={char.z}
+        />
       ))}
     </group>
   )
@@ -362,7 +370,7 @@ const HackerScene = () => {
         />
         
         {/* Interactive Elements */}
-        <MatrixRain mouse={mouse} />
+        <MatrixRain />
         
         {/* Post-processing Effects (softened) */}
         <EffectComposer>
