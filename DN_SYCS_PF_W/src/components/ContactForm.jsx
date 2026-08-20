@@ -92,7 +92,7 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label htmlFor="name" className="block text-sm font-mono text-green-400 mb-2">
-              [IDENTITY]:
+              [NAME]:
             </label>
             <input
               type="text"
@@ -101,14 +101,14 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-black border border-green-400/50 rounded text-green-300 placeholder-green-600 focus:outline-none focus:border-green-400 focus:bg-gray-900/50 transition-colors font-mono"
-              placeholder="Enter your alias..."
+              className="w-full px-4 py-3 bg-black border border-green-400/50 rounded text-green-300 placeholder-green-600/70 focus:outline-none focus:border-green-400 focus:bg-gray-900/50 transition-colors font-mono"
+              placeholder="Enter your name..."
             />
           </div>
           
           <div>
             <label htmlFor="email" className="block text-sm font-mono text-green-400 mb-2">
-              [SECURE_CHANNEL]:
+              [EMAIL]:
             </label>
             <input
               type="email"
@@ -117,31 +117,15 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-black border border-green-400/50 rounded text-green-300 placeholder-green-600 focus:outline-none focus:border-green-400 focus:bg-gray-900/50 transition-colors font-mono"
-              placeholder="encrypted@email.onion"
+              className="w-full px-4 py-3 bg-black border border-green-400/50 rounded text-green-300 placeholder-green-600/70 focus:outline-none focus:border-green-400 focus:bg-gray-900/50 transition-colors font-mono"
+              placeholder="you@company.com"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="subject" className="block text-sm font-mono text-green-400 mb-2">
-            [OPERATION_CODE]:
-          </label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 bg-black border border-green-400/50 rounded text-green-300 placeholder-green-600 focus:outline-none focus:border-green-400 focus:bg-gray-900/50 transition-colors font-mono"
-            placeholder="Operation codename..."
-          />
-        </div>
-
-        <div>
           <label htmlFor="message" className="block text-sm font-mono text-green-400 mb-2">
-            [ENCRYPTED_PAYLOAD]:
+            [MESSAGE]:
           </label>
           <textarea
             id="message"
@@ -149,16 +133,16 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            rows={6}
-            className="w-full px-4 py-3 bg-black border border-green-400/50 rounded text-green-300 placeholder-green-600 focus:outline-none focus:border-green-400 focus:bg-gray-900/50 transition-colors resize-none font-mono"
-            placeholder="BEGIN ENCRYPTED MESSAGE\n---\nDescribe your security requirements, project scope, or consultation needs...\n---\nEND ENCRYPTED MESSAGE"
+            rows={5}
+            className="w-full px-4 py-3 bg-black border border-green-400/50 rounded text-green-300 placeholder-green-600/70 focus:outline-none focus:border-green-400 focus:bg-gray-900/50 transition-colors resize-none font-mono"
+            placeholder="What are you looking to discuss?"
           />
         </div>
 
         <motion.button
           type="submit"
           disabled={isSubmitting}
-          className="w-full px-8 py-4 bg-green-600 hover:bg-green-500 text-black font-semibold font-mono rounded border border-green-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-8 py-4 bg-green-600 hover:bg-green-500 text-black font-semibold font-mono rounded border border-green-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -194,28 +178,36 @@ const ContactForm = () => {
         transition={{ duration: 1, delay: 1.2 }}
         className="mt-12 text-center"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="border border-green-400/30 bg-black/60 p-8 rounded-lg text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="border border-green-400/30 bg-black/60 p-6 rounded-lg text-center hover:border-green-400 transition-colors">
             <div className="text-2xl mb-2">📧</div>
-            <h3 className="font-semibold mb-2 text-green-400 font-mono">[SECURE_EMAIL]</h3>
-            <a href="mailto:shadowextractorarise@proton.me" className="text-gray-400 text-sm font-mono hover:text-green-400 transition-colors break-words">
-              shadowextractorarise@proton.me
+            <h3 className="font-semibold mb-2 text-green-400 font-mono text-sm">[SECURE_EMAIL]</h3>
+            <a href="mailto:om.mehta24@sakec.ac.in" className="text-gray-300 text-xs font-mono hover:text-green-400 transition-colors break-words">
+              om.mehta24@sakec.ac.in
             </a>
           </div>
           
-          <div className="border border-blue-400/30 bg-black/60 p-8 rounded-lg text-center">
+          <div className="border border-blue-400/30 bg-black/60 p-6 rounded-lg text-center hover:border-blue-400 transition-colors">
             <div className="text-2xl mb-2">🐙</div>
-            <h3 className="font-semibold mb-2 text-blue-400 font-mono">[GITHUB]</h3>
-            <a href="https://github.com/omji48" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm font-mono hover:text-blue-400 transition-colors break-words">
-              https://github.com/omji48
+            <h3 className="font-semibold mb-2 text-blue-400 font-mono text-sm">[GITHUB]</h3>
+            <a href="https://github.com/omji48" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs font-mono hover:text-blue-400 transition-colors break-words">
+              github.com/omji48
             </a>
           </div>
           
-          <div className="border border-red-400/30 bg-black/60 p-8 rounded-lg text-center">
-            <div className="text-3xl mb-3">🎯</div>
-            <h3 className="font-semibold mb-3 text-red-400 font-mono text-xl">[HACKERONE]</h3>
-            <a href="https://hackerone.com/creative_bug" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-base font-mono hover:text-red-400 transition-colors break-words">
-              https://hackerone.com/creative_bug
+          <div className="border border-red-400/30 bg-black/60 p-6 rounded-lg text-center hover:border-red-400 transition-colors">
+            <div className="text-2xl mb-2">🎯</div>
+            <h3 className="font-semibold mb-2 text-red-400 font-mono text-sm">[HACKERONE]</h3>
+            <a href="https://hackerone.com/creative_bug" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs font-mono hover:text-red-400 transition-colors break-words">
+              hackerone.com/creative_bug
+            </a>
+          </div>
+
+          <div className="border border-cyan-400/30 bg-black/60 p-6 rounded-lg text-center hover:border-cyan-400 transition-colors">
+            <div className="text-2xl mb-2">💼</div>
+            <h3 className="font-semibold mb-2 text-cyan-400 font-mono text-sm">[LINKEDIN]</h3>
+            <a href="https://www.linkedin.com/in/om-vivek-mehta" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs font-mono hover:text-cyan-400 transition-colors break-words">
+              om-vivek-mehta
             </a>
           </div>
         </div>

@@ -18,9 +18,8 @@ const Footer = () => {
               <span className="text-red-500">[</span>CYBER_PORTFOLIO<span className="text-red-500">]</span>
             </h3>
             <p className="text-gray-400 mb-6 max-w-md font-mono text-sm leading-relaxed">
-              Professional ethical hacker and penetration testing specialist. 
-              Dedicated to securing digital infrastructure through responsible disclosure 
-              and comprehensive security assessments.
+              Cybersecurity student, active security intern at 9USRcraft, and startup co-founder. 
+              Dedicated to hands-on vulnerability assessments, offensive security research, and building robust security tooling.
             </p>
           </div>
 
@@ -48,20 +47,29 @@ const Footer = () => {
               </li>
               <li>
                 <motion.a
+                  href="#experience"
+                  className="text-gray-400 hover:text-green-400 transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  → Experience
+                </motion.a>
+              </li>
+              <li>
+                <motion.a
+                  href="#projects"
+                  className="text-gray-400 hover:text-green-400 transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  → Projects
+                </motion.a>
+              </li>
+              <li>
+                <motion.a
                   href="#skills"
                   className="text-gray-400 hover:text-green-400 transition-colors"
                   whileHover={{ x: 5 }}
                 >
                   → Skills
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="#work"
-                  className="text-gray-400 hover:text-green-400 transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  → Exploits
                 </motion.a>
               </li>
               <li>
