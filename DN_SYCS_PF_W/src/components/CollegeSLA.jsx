@@ -3,16 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const subjectsData = [
   {
-    id: 'acd',
-    code: 'ACD',
-    title: 'Automata and Compiler Design',
-    videoFile: 'TYCS_25_ACD_SLA_01.mp4',
-    embedUrl: 'https://drive.google.com/file/d/1PP9Hkx95UuoN3SyNz2L6dOYzHQ9lRfo-/preview',
-    driveUrl: 'https://drive.google.com/file/d/1PP9Hkx95UuoN3SyNz2L6dOYzHQ9lRfo-/view?usp=sharing',
-    size: '775 MB',
-    badge: 'STAGE 01'
-  },
-  {
     id: 'dmw',
     code: 'DMW',
     title: 'Data Mining and Warehousing',
@@ -20,16 +10,6 @@ const subjectsData = [
     embedUrl: 'https://drive.google.com/file/d/1y0AJ6Nb-Gr4XpZxYb5ro7rNXehFidggp/preview',
     driveUrl: 'https://drive.google.com/file/d/1y0AJ6Nb-Gr4XpZxYb5ro7rNXehFidggp/view?usp=sharing',
     size: '754 MB',
-    badge: 'STAGE 01'
-  },
-  {
-    id: 'cse',
-    code: 'CSE',
-    title: 'Cyber Security Essentials',
-    videoFile: 'TYCS_25_CSE_SLA_01.mp4',
-    embedUrl: 'https://drive.google.com/file/d/1SxtO0PufaP_HpprKQ6ijX-LyGBP3yVR_/preview',
-    driveUrl: 'https://drive.google.com/file/d/1SxtO0PufaP_HpprKQ6ijX-LyGBP3yVR_/view?usp=sharing',
-    size: '771 MB',
     badge: 'STAGE 01'
   },
   {
@@ -110,7 +90,7 @@ const CollegeSLA = ({ onBack }) => {
           <div className="flex items-center space-x-3">
             <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-mono">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span>4 OF 4 MODULES SUBMITTED</span>
+              <span>{subjectsData.length} OF {subjectsData.length} MODULES SUBMITTED</span>
             </div>
             <a
               href="https://github.com/omji48"
@@ -183,7 +163,7 @@ const CollegeSLA = ({ onBack }) => {
                   : 'bg-black/60 text-gray-300 border border-green-500/20 hover:border-green-400/60 hover:text-green-300'
               }`}
             >
-              [ALL SUBJECTS (4)]
+              [ALL SUBJECTS ({subjectsData.length})]
             </button>
             {subjectsData.map((sub) => (
               <button

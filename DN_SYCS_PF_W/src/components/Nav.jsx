@@ -149,7 +149,7 @@ const Nav = ({ onNavigateToSLA }) => {
               <span className="flex items-center gap-2">
                 <span>🎓</span> [COLLEGE SLA]
               </span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-400 text-black font-bold">4 VIDEOS</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-400 text-black font-bold">2 VIDEOS</span>
             </motion.button>
 
             <a
