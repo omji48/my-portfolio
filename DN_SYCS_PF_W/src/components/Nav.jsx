@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 // import { useScrollController } from '../lib/scrollController'
 
-const Nav = () => {
+const Nav = ({ onNavigateToSLA }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [currentChapter, setCurrentChapter] = useState(0)
@@ -80,6 +80,16 @@ const Nav = () => {
             </motion.button>
           ))}
 
+          {/* College SLA CTA Button */}
+          <motion.button
+            onClick={onNavigateToSLA}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-3 py-1.5 bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 hover:text-white hover:from-green-500/30 hover:to-emerald-500/30 border border-green-400/80 rounded font-mono text-xs font-bold transition-all duration-200 flex items-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.25)]"
+          >
+            <span>🎓</span> [COLLEGE SLA]
+          </motion.button>
+
           {/* Resume CTA Button */}
           <motion.a
             href="/resume.pdf"
@@ -127,6 +137,20 @@ const Nav = () => {
                 {chapter.icon} {chapter.label}
               </motion.button>
             ))}
+
+            <motion.button
+              onClick={() => {
+                setIsOpen(false)
+                onNavigateToSLA?.()
+              }}
+              className="w-full text-left px-4 py-2.5 text-xs font-mono rounded text-green-300 bg-green-500/20 border border-green-400/60 hover:bg-green-500/30 transition-colors flex items-center justify-between mt-2"
+              whileHover={{ x: 6 }}
+            >
+              <span className="flex items-center gap-2">
+                <span>🎓</span> [COLLEGE SLA]
+              </span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-400 text-black font-bold">4 VIDEOS</span>
+            </motion.button>
 
             <a
               href="/resume.pdf"

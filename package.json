@@ -1,0 +1,9 @@
+{
+  "name": "my-portfolio-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix DN_SYCS_PF_W run dev",
+    "build": "npm --prefix DN_SYCS_PF_W run build",
+    "preview": "npm --prefix DN_SYCS_PF_W run preview"
+  }
+}

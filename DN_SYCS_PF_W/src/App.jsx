@@ -9,6 +9,7 @@ import * as THREE from 'three'
 import Nav from './components/Nav'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
+import CollegeSLA from './components/CollegeSLA'
 
 // Matrix Character Component
 const MatrixChar = ({ initialX, initialY, initialZ }) => {
@@ -304,7 +305,7 @@ const LoadingSequence = () => {
 }
 
 // Advanced Professional Hacker 3D Scene
-const HackerScene = () => {
+const HackerScene = ({ onNavigateToSLA }) => {
   const [error, setError] = useState(null)
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
@@ -465,6 +466,12 @@ const HackerScene = () => {
               >
                 <span>⚔️</span> [VIEW_PROJECTS]
               </a>
+              <button
+                onClick={onNavigateToSLA}
+                className="px-6 py-3 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/80 font-mono text-xs md:text-sm font-bold rounded transition-all duration-300 hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] flex items-center gap-2"
+              >
+                <span>🎓</span> [COLLEGE_SLA_VIDEOS]
+              </button>
               <a
                 href="/resume.pdf"
                 target="_blank"
@@ -507,6 +514,44 @@ function App() {
   const [performanceMode, setPerformanceMode] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.toLowerCase()
+      const hash = window.location.hash.toLowerCase()
+      const search = window.location.search.toLowerCase()
+      if (path.includes('college-sla') || hash.includes('college-sla') || search.includes('college-sla')) {
+        return 'college-sla'
+      }
+    }
+    return 'home'
+  })
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname.toLowerCase()
+      const hash = window.location.hash.toLowerCase()
+      const search = window.location.search.toLowerCase()
+      if (path.includes('college-sla') || hash.includes('college-sla') || search.includes('college-sla')) {
+        setCurrentPage('college-sla')
+      } else {
+        setCurrentPage('home')
+      }
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  const navigateToSLA = () => {
+    window.history.pushState(null, '', '/college-sla')
+    setCurrentPage('college-sla')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const navigateToHome = () => {
+    window.history.pushState(null, '', '/')
+    setCurrentPage('home')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   useEffect(() => {
     // Check WebGL support immediately
@@ -524,7 +569,10 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Toggles removed from UI per request
+  // If viewing the dedicated College SLA page, render it immediately
+  if (currentPage === 'college-sla') {
+    return <CollegeSLA onBack={navigateToHome} />
+  }
 
   if (isLoading) {
     return (
@@ -550,11 +598,11 @@ function App() {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Navigation */}
-      <Nav />
+      <Nav onNavigateToSLA={navigateToSLA} />
 
       {/* Main 3D Scene */}
       <section id="hero">
-        <HackerScene />
+        <HackerScene onNavigateToSLA={navigateToSLA} />
       </section>
 
       {/* About Me Section */}
@@ -912,6 +960,33 @@ function App() {
               </div>
             </motion.div>
           </div>
+
+          {/* College SLA Featured Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mt-14 rounded-xl border border-green-500/40 bg-gradient-to-r from-green-950/40 via-black to-emerald-950/40 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_0_30px_rgba(34,197,94,0.15)] max-w-5xl mx-auto"
+          >
+            <div className="text-left font-mono">
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-green-500/20 text-green-400 border border-green-500/40 text-xs font-bold mb-2">
+                <span>🎓</span> [ACADEMIC_SUBMISSION] TYCS_25
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                College Self Learning Activity (SLA)
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+                4 Full-length subject video walkthroughs and syllabus breakdowns: Automata &amp; Compiler Design (ACD), Data Mining &amp; Warehousing (DMW), Cyber Security Essentials (CSE), and Cyber Forensics (CF).
+              </p>
+            </div>
+
+            <button
+              onClick={navigateToSLA}
+              className="shrink-0 px-6 py-3 rounded-lg bg-green-500 hover:bg-green-400 text-black font-mono font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:scale-105"
+            >
+              <span>▶</span> [OPEN SLA PORTAL (4 VIDEOS)]
+            </button>
+          </motion.div>
           
           {/* Terminal Roadmap Block */}
           <motion.div
