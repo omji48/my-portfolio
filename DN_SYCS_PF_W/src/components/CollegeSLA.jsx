@@ -7,7 +7,8 @@ const subjectsData = [
     code: 'ACD',
     title: 'Automata and Compiler Design',
     videoFile: 'TYCS_25_ACD_SLA_01.mp4',
-    videoSrc: '/videos/TYCS_25_ACD_SLA_01.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1PP9Hkx95UuoN3SyNz2L6dOYzHQ9lRfo-/preview',
+    driveUrl: 'https://drive.google.com/file/d/1PP9Hkx95UuoN3SyNz2L6dOYzHQ9lRfo-/view?usp=sharing',
     size: '775 MB',
     badge: 'STAGE 01'
   },
@@ -16,7 +17,8 @@ const subjectsData = [
     code: 'DMW',
     title: 'Data Mining and Warehousing',
     videoFile: 'TYCS_25_DMW_SLA_01.mp4',
-    videoSrc: '/videos/TYCS_25_DMW_SLA_01.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1y0AJ6Nb-Gr4XpZxYb5ro7rNXehFidggp/preview',
+    driveUrl: 'https://drive.google.com/file/d/1y0AJ6Nb-Gr4XpZxYb5ro7rNXehFidggp/view?usp=sharing',
     size: '754 MB',
     badge: 'STAGE 01'
   },
@@ -25,7 +27,8 @@ const subjectsData = [
     code: 'CSE',
     title: 'Cyber Security Essentials',
     videoFile: 'TYCS_25_CSE_SLA_01.mp4',
-    videoSrc: '/videos/TYCS_25_CSE_SLA_01.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1SxtO0PufaP_HpprKQ6ijX-LyGBP3yVR_/preview',
+    driveUrl: 'https://drive.google.com/file/d/1SxtO0PufaP_HpprKQ6ijX-LyGBP3yVR_/view?usp=sharing',
     size: '771 MB',
     badge: 'STAGE 01'
   },
@@ -34,7 +37,8 @@ const subjectsData = [
     code: 'CF',
     title: 'Cyber Forensics',
     videoFile: 'TYCS_25_CF_SLA_01.mp4',
-    videoSrc: '/videos/TYCS_25_CF_SLA_01.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1YZP0thV2HL3om1HED9H0RAmxXAL2WjzJ/preview',
+    driveUrl: 'https://drive.google.com/file/d/1YZP0thV2HL3om1HED9H0RAmxXAL2WjzJ/view?usp=sharing',
     size: '758 MB',
     badge: 'STAGE 01'
   }
@@ -252,22 +256,22 @@ const CollegeSLA = ({ onBack }) => {
                 </div>
               </div>
 
-              {/* Video Player Container */}
-              <div className="relative bg-black aspect-video flex items-center justify-center border-b border-green-500/20 group/player">
-                <video
-                  src={sub.videoSrc}
-                  controls
-                  preload="metadata"
-                  className="w-full h-full object-contain bg-black"
-                >
-                  Your browser does not support the video tag.
-                </video>
+              {/* Video Player Container (Google Drive High-Performance Player) */}
+              <div className="relative bg-black aspect-video flex items-center justify-center border-b border-green-500/20 group/player overflow-hidden">
+                <iframe
+                  src={sub.embedUrl}
+                  title={sub.title}
+                  className="w-full h-full border-0"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  loading="lazy"
+                />
 
-                {/* Quick overlay buttons */}
+                {/* Quick overlay button */}
                 <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover/player:opacity-100 transition-opacity pointer-events-none">
                   <button
                     onClick={() => setTheaterVideo(sub)}
-                    className="pointer-events-auto px-2 py-1 rounded bg-black/80 hover:bg-green-500 hover:text-black border border-green-400/50 text-green-400 font-mono text-[11px] transition-all flex items-center gap-1 shadow-lg"
+                    className="pointer-events-auto px-2.5 py-1 rounded bg-black/90 hover:bg-green-500 hover:text-black border border-green-400/60 text-green-400 font-mono text-[11px] font-bold transition-all flex items-center gap-1 shadow-lg"
                     title="Open in Cinema Mode"
                   >
                     <span>⛶</span> Cinema Mode
@@ -277,29 +281,30 @@ const CollegeSLA = ({ onBack }) => {
 
               {/* Bottom Action Strip */}
               <div className="p-4 bg-black/60 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                  <div className="text-gray-400">
-                    Subject Code: <span className="text-green-400 font-bold">[{sub.code}]</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setTheaterVideo(sub)}
-                      className="px-3 py-1.5 rounded bg-black border border-green-500/40 hover:border-green-400 text-green-400 hover:text-white transition-all flex items-center gap-1"
-                    >
-                      <span>🎬</span>
-                      <span>Theater View</span>
-                    </button>
-
-                    <a
-                      href={sub.videoSrc}
-                      download={sub.videoFile}
-                      className="px-3 py-1.5 rounded bg-green-500/15 hover:bg-green-500 hover:text-black border border-green-400/50 text-green-400 font-bold transition-all flex items-center gap-1 shadow-[0_0_10px_rgba(34,197,94,0.15)]"
-                    >
-                      <span>⬇</span>
-                      <span>Download Video</span>
-                    </a>
-                  </div>
+                <div className="text-gray-400">
+                  Subject Code: <span className="text-green-400 font-bold">[{sub.code}]</span>
                 </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setTheaterVideo(sub)}
+                    className="px-3 py-1.5 rounded bg-black border border-green-500/40 hover:border-green-400 text-green-400 hover:text-white transition-all flex items-center gap-1"
+                  >
+                    <span>🎬</span>
+                    <span>Theater View</span>
+                  </button>
+
+                  <a
+                    href={sub.driveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded bg-green-500/15 hover:bg-green-500 hover:text-black border border-green-400/50 text-green-400 font-bold transition-all flex items-center gap-1 shadow-[0_0_10px_rgba(34,197,94,0.15)]"
+                  >
+                    <span>⬇</span>
+                    <span>Open / Download</span>
+                  </a>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -329,7 +334,7 @@ const CollegeSLA = ({ onBack }) => {
                 [COLLEGE_SELF_LEARNING_ACTIVITY_SUBMISSION_PORTAL]
               </div>
               <div className="text-gray-400">
-                All 4 SLA sessions are hosted directly from local assets. Each video is rendered in Full HD with stereo audio.
+                All 4 SLA sessions are streamed in Full HD directly from Google Drive cloud storage.
               </div>
             </div>
 
@@ -390,12 +395,13 @@ const CollegeSLA = ({ onBack }) => {
                 </div>
 
                 <a
-                  href={theaterVideo.videoSrc}
-                  download={theaterVideo.videoFile}
+                  href={theaterVideo.driveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-3 py-1.5 rounded bg-green-500/20 hover:bg-green-500/30 border border-green-400/50 text-green-400 font-mono text-xs transition-colors flex items-center gap-1"
                 >
                   <span>⬇</span>
-                  <span className="hidden sm:inline">Download</span>
+                  <span className="hidden sm:inline">Open in Drive</span>
                 </a>
 
                 <button
@@ -410,15 +416,13 @@ const CollegeSLA = ({ onBack }) => {
             {/* Cinema Video Viewport */}
             <div className="flex-1 flex items-center justify-center py-4 max-w-7xl mx-auto w-full">
               <div className="w-full h-full max-h-[75vh] bg-black rounded-xl overflow-hidden border border-green-500/40 shadow-[0_0_50px_rgba(34,197,94,0.2)] flex items-center justify-center">
-                <video
-                  ref={theaterVideoRef}
-                  src={theaterVideo.videoSrc}
-                  controls
-                  autoPlay
-                  className="w-full h-full object-contain"
-                >
-                  Your browser does not support the video tag.
-                </video>
+                <iframe
+                  src={theaterVideo.embedUrl}
+                  title={theaterVideo.title}
+                  className="w-full h-full border-0"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
               </div>
             </div>
 
