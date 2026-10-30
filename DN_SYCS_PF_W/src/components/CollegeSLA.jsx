@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const subjectsData = [
-  // --- STAGE 01 ---
+  // ==================== STAGE 01 ====================
   {
     id: 'stage1-acd',
     stage: 'stage1',
@@ -52,7 +52,7 @@ const subjectsData = [
     badge: 'STAGE 01'
   },
 
-  // --- STAGE 02 ---
+  // ==================== STAGE 02 ====================
   {
     id: 'stage2-acd',
     stage: 'stage2',
@@ -100,6 +100,56 @@ const subjectsData = [
     driveUrl: 'https://drive.google.com/file/d/1em1Qdrzzq42xqbQrQ5WWsbOUg1PYfMrY/view?usp=sharing',
     size: 'Full HD',
     badge: 'STAGE 02'
+  },
+
+  // ==================== STAGE 03 ====================
+  {
+    id: 'stage3-acd',
+    stage: 'stage3',
+    stageLabel: 'Stage 03',
+    code: 'ACD',
+    title: 'Automata and Compiler Design',
+    videoFile: 'TYCS_25_ACD_SLA_03.mp4',
+    embedUrl: 'https://drive.google.com/file/d/19SUGfs-BwH2lC5keuSqy6EdnmEB-_XkH/preview',
+    driveUrl: 'https://drive.google.com/file/d/19SUGfs-BwH2lC5keuSqy6EdnmEB-_XkH/view?usp=sharing',
+    size: 'Full HD',
+    badge: 'STAGE 03'
+  },
+  {
+    id: 'stage3-dm',
+    stage: 'stage3',
+    stageLabel: 'Stage 03',
+    code: 'DMW',
+    title: 'Data Mining and Warehousing',
+    videoFile: 'TYCS_25_DMW_SLA_03.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1tCwOuwuO7GXo8TRs82OVCJtdxPMb7RtB/preview',
+    driveUrl: 'https://drive.google.com/file/d/1tCwOuwuO7GXo8TRs82OVCJtdxPMb7RtB/view?usp=sharing',
+    size: 'Full HD',
+    badge: 'STAGE 03'
+  },
+  {
+    id: 'stage3-cse',
+    stage: 'stage3',
+    stageLabel: 'Stage 03',
+    code: 'CSE',
+    title: 'Cyber Security Essentials',
+    videoFile: 'TYCS_25_CSE_SLA_03.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1V7qKH0-RuHg4wN_an9dySvr5UcYOKFmJ/preview',
+    driveUrl: 'https://drive.google.com/file/d/1V7qKH0-RuHg4wN_an9dySvr5UcYOKFmJ/view?usp=sharing',
+    size: 'Full HD',
+    badge: 'STAGE 03'
+  },
+  {
+    id: 'stage3-cf',
+    stage: 'stage3',
+    stageLabel: 'Stage 03',
+    code: 'CF',
+    title: 'Cyber Forensics',
+    videoFile: 'TYCS_25_CF_SLA_03.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1gzQI4kTiH4TIIeR1POsJp5fksFxw-7H8/preview',
+    driveUrl: 'https://drive.google.com/file/d/1gzQI4kTiH4TIIeR1POsJp5fksFxw-7H8/view?usp=sharing',
+    size: 'Full HD',
+    badge: 'STAGE 03'
   }
 ]
 
@@ -111,8 +161,35 @@ const subjectCodes = [
   { code: 'CF', label: 'CF' }
 ]
 
+const stageStyles = {
+  stage1: {
+    border: 'border-green-500/30 hover:border-green-400/80',
+    badgeBg: 'bg-green-500/10 text-green-400 border-green-500/30',
+    codeBadge: 'bg-green-500/15 border-green-400/40 text-green-400',
+    highlightText: 'text-green-400',
+    tabActive: 'bg-green-500 text-black shadow-[0_0_15px_rgba(34,197,94,0.4)]',
+    tabInactive: 'bg-black/60 text-gray-300 border border-green-500/20 hover:border-green-400/60 hover:text-green-300'
+  },
+  stage2: {
+    border: 'border-cyan-500/40 hover:border-cyan-400/90',
+    badgeBg: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/40',
+    codeBadge: 'bg-cyan-500/15 border-cyan-400/40 text-cyan-300',
+    highlightText: 'text-cyan-300',
+    tabActive: 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]',
+    tabInactive: 'bg-black/60 text-gray-300 border border-cyan-500/20 hover:border-cyan-400/60 hover:text-cyan-300'
+  },
+  stage3: {
+    border: 'border-purple-500/40 hover:border-purple-400/90',
+    badgeBg: 'bg-purple-500/15 text-purple-300 border-purple-500/40',
+    codeBadge: 'bg-purple-500/15 border-purple-400/40 text-purple-300',
+    highlightText: 'text-purple-300',
+    tabActive: 'bg-purple-400 text-black shadow-[0_0_15px_rgba(192,132,252,0.4)]',
+    tabInactive: 'bg-black/60 text-gray-300 border border-purple-500/20 hover:border-purple-400/60 hover:text-purple-300'
+  }
+}
+
 const CollegeSLA = ({ onBack }) => {
-  const [selectedStage, setSelectedStage] = useState('all') // 'all' | 'stage1' | 'stage2'
+  const [selectedStage, setSelectedStage] = useState('all') // 'all' | 'stage1' | 'stage2' | 'stage3'
   const [selectedSubject, setSelectedSubject] = useState('all') // 'all' | 'ACD' | 'DMW' | 'CSE' | 'CF'
   const [searchQuery, setSearchQuery] = useState('')
   const [theaterVideo, setTheaterVideo] = useState(null)
@@ -180,7 +257,7 @@ const CollegeSLA = ({ onBack }) => {
           <div className="flex items-center space-x-3">
             <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-mono">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span>{subjectsData.length} OF {subjectsData.length} MODULES SUBMITTED (STAGE 1 &amp; 2)</span>
+              <span>{subjectsData.length} OF {subjectsData.length} MODULES SUBMITTED (STAGES 1, 2 &amp; 3)</span>
             </div>
             <a
               href="https://github.com/omji48"
@@ -199,7 +276,7 @@ const CollegeSLA = ({ onBack }) => {
         {/* Hero Banner Section */}
         <div className="relative rounded-2xl border border-green-500/30 bg-gradient-to-br from-black via-gray-950 to-green-950/20 p-6 sm:p-10 mb-10 overflow-hidden shadow-[0_0_30px_rgba(34,197,94,0.1)]">
           <div className="absolute top-0 right-0 transform translate-x-8 -translate-y-8 w-64 h-64 bg-green-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 transform -translate-x-8 translate-y-8 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 transform -translate-x-8 translate-y-8 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-green-500/15 border border-green-400/30 text-green-300 font-mono text-xs mb-4">
@@ -215,7 +292,7 @@ const CollegeSLA = ({ onBack }) => {
 
             <p className="text-gray-300 font-mono text-sm sm:text-base max-w-3xl leading-relaxed mb-6">
               Official video submissions and detailed walkthroughs for Third Year Computer Science SLA evaluations.
-              Covering both <strong>Stage 01</strong> and <strong>Stage 02</strong> for all 4 core curriculum subjects.
+              Covering <strong>Stage 01</strong>, <strong>Stage 02</strong>, and <strong>Stage 03</strong> for all 4 core curriculum subjects.
             </p>
 
             {/* Quick Metadata Pill Grid */}
@@ -234,7 +311,7 @@ const CollegeSLA = ({ onBack }) => {
               </div>
               <div className="p-3 rounded-lg bg-black/60 border border-green-500/20">
                 <div className="text-gray-400">EVALUATION STAGES</div>
-                <div className="text-green-400 font-bold text-sm">Stage 01 &amp; Stage 02 Verified</div>
+                <div className="text-green-400 font-bold text-sm">Stage 01, 02 &amp; 03 Verified</div>
               </div>
             </div>
           </div>
@@ -244,7 +321,7 @@ const CollegeSLA = ({ onBack }) => {
         <div className="flex flex-col gap-4 mb-8">
           {/* Top Row: Stage Selector Tabs */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-green-500/20">
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs font-mono text-gray-400 mr-1">STAGE:</span>
               <button
                 onClick={() => setSelectedStage('all')}
@@ -254,14 +331,14 @@ const CollegeSLA = ({ onBack }) => {
                     : 'bg-black/60 text-gray-300 border border-green-500/20 hover:border-green-400/60 hover:text-green-300'
                 }`}
               >
-                [ALL STAGES (8)]
+                [ALL STAGES (12)]
               </button>
               <button
                 onClick={() => setSelectedStage('stage1')}
                 className={`px-3 py-1.5 rounded font-mono text-xs font-bold transition-all flex items-center gap-1.5 ${
                   selectedStage === 'stage1'
-                    ? 'bg-green-500 text-black shadow-[0_0_15px_rgba(34,197,94,0.4)]'
-                    : 'bg-black/60 text-gray-300 border border-green-500/20 hover:border-green-400/60 hover:text-green-300'
+                    ? stageStyles.stage1.tabActive
+                    : stageStyles.stage1.tabInactive
                 }`}
               >
                 <span>⚡</span> [STAGE 01 (4)]
@@ -270,11 +347,21 @@ const CollegeSLA = ({ onBack }) => {
                 onClick={() => setSelectedStage('stage2')}
                 className={`px-3 py-1.5 rounded font-mono text-xs font-bold transition-all flex items-center gap-1.5 ${
                   selectedStage === 'stage2'
-                    ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]'
-                    : 'bg-black/60 text-gray-300 border border-cyan-500/20 hover:border-cyan-400/60 hover:text-cyan-300'
+                    ? stageStyles.stage2.tabActive
+                    : stageStyles.stage2.tabInactive
                 }`}
               >
                 <span>🔥</span> [STAGE 02 (4)]
+              </button>
+              <button
+                onClick={() => setSelectedStage('stage3')}
+                className={`px-3 py-1.5 rounded font-mono text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  selectedStage === 'stage3'
+                    ? stageStyles.stage3.tabActive
+                    : stageStyles.stage3.tabInactive
+                }`}
+              >
+                <span>🚀</span> [STAGE 03 (4)]
               </button>
             </div>
 
@@ -322,108 +409,97 @@ const CollegeSLA = ({ onBack }) => {
 
         {/* Subjects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filteredSubjects.map((sub, index) => (
-            <motion.div
-              key={sub.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className={`rounded-xl border ${
-                sub.stage === 'stage2' ? 'border-cyan-500/40 hover:border-cyan-400/90' : 'border-green-500/30 hover:border-green-400/80'
-              } bg-gray-950/80 backdrop-blur-sm overflow-hidden transition-all duration-300 flex flex-col group shadow-[0_0_20px_rgba(0,0,0,0.8)]`}
-            >
-              {/* Card Header Bar */}
-              <div className="p-4 sm:p-5 border-b border-green-500/20 bg-black/60 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <span
-                    className={`px-2.5 py-1 rounded ${
-                      sub.stage === 'stage2'
-                        ? 'bg-cyan-500/15 border-cyan-400/40 text-cyan-300'
-                        : 'bg-green-500/15 border-green-400/40 text-green-400'
-                    } border font-mono text-xs font-bold`}
-                  >
-                    {sub.code}
-                  </span>
-                  <div>
-                    <h2 className="text-base sm:text-lg font-mono font-bold text-white group-hover:text-green-300 transition-colors">
-                      {sub.title}
-                    </h2>
-                    <p className="text-xs font-mono text-gray-400">File: {sub.videoFile}</p>
+          {filteredSubjects.map((sub, index) => {
+            const currentStyle = stageStyles[sub.stage] || stageStyles.stage1
+            return (
+              <motion.div
+                key={sub.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className={`rounded-xl border ${currentStyle.border} bg-gray-950/80 backdrop-blur-sm overflow-hidden transition-all duration-300 flex flex-col group shadow-[0_0_20px_rgba(0,0,0,0.8)]`}
+              >
+                {/* Card Header Bar */}
+                <div className="p-4 sm:p-5 border-b border-green-500/20 bg-black/60 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <span className={`px-2.5 py-1 rounded ${currentStyle.codeBadge} border font-mono text-xs font-bold`}>
+                      {sub.code}
+                    </span>
+                    <div>
+                      <h2 className="text-base sm:text-lg font-mono font-bold text-white group-hover:text-green-300 transition-colors">
+                        {sub.title}
+                      </h2>
+                      <p className="text-xs font-mono text-gray-400">File: {sub.videoFile}</p>
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <span className={`inline-block text-[11px] font-mono px-2 py-0.5 rounded ${currentStyle.badgeBg} border font-bold`}>
+                      [{sub.badge}]
+                    </span>
+                    <div className="text-[11px] font-mono text-gray-500 mt-0.5">{sub.size}</div>
                   </div>
                 </div>
 
-                <div className="text-right">
-                  <span
-                    className={`inline-block text-[11px] font-mono px-2 py-0.5 rounded ${
-                      sub.stage === 'stage2'
-                        ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/40'
-                        : 'bg-green-500/10 text-green-400 border-green-500/30'
-                    } border font-bold`}
-                  >
-                    [{sub.badge}]
-                  </span>
-                  <div className="text-[11px] font-mono text-gray-500 mt-0.5">{sub.size}</div>
-                </div>
-              </div>
+                {/* Video Player Container (Google Drive High-Performance Player) */}
+                <div className="relative bg-black aspect-video flex items-center justify-center border-b border-green-500/20 group/player overflow-hidden">
+                  <iframe
+                    src={sub.embedUrl}
+                    title={`${sub.title} - ${sub.badge}`}
+                    className="w-full h-full border-0"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                    loading="lazy"
+                  />
 
-              {/* Video Player Container (Google Drive High-Performance Player) */}
-              <div className="relative bg-black aspect-video flex items-center justify-center border-b border-green-500/20 group/player overflow-hidden">
-                <iframe
-                  src={sub.embedUrl}
-                  title={`${sub.title} - ${sub.badge}`}
-                  className="w-full h-full border-0"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  loading="lazy"
-                />
-
-                {/* Quick overlay button */}
-                <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover/player:opacity-100 transition-opacity pointer-events-none">
-                  <button
-                    onClick={() => setTheaterVideo(sub)}
-                    className="pointer-events-auto px-2.5 py-1 rounded bg-black/90 hover:bg-green-500 hover:text-black border border-green-400/60 text-green-400 font-mono text-[11px] font-bold transition-all flex items-center gap-1 shadow-lg"
-                    title="Open in Cinema Mode"
-                  >
-                    <span>⛶</span> Cinema Mode
-                  </button>
-                </div>
-              </div>
-
-              {/* Bottom Action Strip */}
-              <div className="p-4 bg-black/60 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                <div className="text-gray-400">
-                  Subject: <span className="text-green-400 font-bold">[{sub.code}]</span> // <span className={sub.stage === 'stage2' ? 'text-cyan-300 font-bold' : 'text-green-400'}>{sub.stageLabel}</span>
+                  {/* Quick overlay button */}
+                  <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover/player:opacity-100 transition-opacity pointer-events-none">
+                    <button
+                      onClick={() => setTheaterVideo(sub)}
+                      className="pointer-events-auto px-2.5 py-1 rounded bg-black/90 hover:bg-green-500 hover:text-black border border-green-400/60 text-green-400 font-mono text-[11px] font-bold transition-all flex items-center gap-1 shadow-lg"
+                      title="Open in Cinema Mode"
+                    >
+                      <span>⛶</span> Cinema Mode
+                    </button>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setTheaterVideo(sub)}
-                    className="px-3 py-1.5 rounded bg-black border border-green-500/40 hover:border-green-400 text-green-400 hover:text-white transition-all flex items-center gap-1"
-                  >
-                    <span>🎬</span>
-                    <span>Theater View</span>
-                  </button>
+                {/* Bottom Action Strip */}
+                <div className="p-4 bg-black/60 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                  <div className="text-gray-400">
+                    Subject: <span className="text-green-400 font-bold">[{sub.code}]</span> // <span className={`font-bold ${currentStyle.highlightText}`}>{sub.stageLabel}</span>
+                  </div>
 
-                  <a
-                    href={sub.driveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 py-1.5 rounded bg-green-500/15 hover:bg-green-500 hover:text-black border border-green-400/50 text-green-400 font-bold transition-all flex items-center gap-1 shadow-[0_0_10px_rgba(34,197,94,0.15)]"
-                  >
-                    <span>⬇</span>
-                    <span>Open / Download</span>
-                  </a>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setTheaterVideo(sub)}
+                      className="px-3 py-1.5 rounded bg-black border border-green-500/40 hover:border-green-400 text-green-400 hover:text-white transition-all flex items-center gap-1"
+                    >
+                      <span>🎬</span>
+                      <span>Theater View</span>
+                    </button>
+
+                    <a
+                      href={sub.driveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded bg-green-500/15 hover:bg-green-500 hover:text-black border border-green-400/50 text-green-400 font-bold transition-all flex items-center gap-1 shadow-[0_0_10px_rgba(34,197,94,0.15)]"
+                    >
+                      <span>⬇</span>
+                      <span>Open / Download</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </div>
 
         {filteredSubjects.length === 0 && (
           <div className="text-center py-20 border border-green-500/20 rounded-xl bg-black/60 font-mono">
             <div className="text-green-400 text-3xl mb-2">🔍</div>
             <div className="text-white text-base font-bold mb-1">NO MATCHING VIDEOS FOUND</div>
-            <div className="text-gray-400 text-xs">Try switching between Stage 01 and Stage 02 tabs or resetting the search filter.</div>
+            <div className="text-gray-400 text-xs">Try switching between Stage 01, Stage 02, and Stage 03 tabs or resetting the search filter.</div>
             <button
               onClick={() => {
                 setSelectedStage('all')
@@ -445,7 +521,7 @@ const CollegeSLA = ({ onBack }) => {
                 [COLLEGE_SELF_LEARNING_ACTIVITY_SUBMISSION_PORTAL]
               </div>
               <div className="text-gray-400">
-                All Stage 01 &amp; Stage 02 SLA sessions are streamed in Full HD directly from Google Drive cloud storage.
+                All Stage 01, Stage 02 &amp; Stage 03 SLA sessions are streamed in Full HD directly from Google Drive cloud storage.
               </div>
             </div>
 
@@ -475,14 +551,22 @@ const CollegeSLA = ({ onBack }) => {
               <div className="flex items-center gap-3">
                 <span
                   className={`px-2.5 py-1 rounded ${
-                    theaterVideo.stage === 'stage2' ? 'bg-cyan-400' : 'bg-green-500'
+                    theaterVideo.stage === 'stage3'
+                      ? 'bg-purple-400'
+                      : theaterVideo.stage === 'stage2'
+                      ? 'bg-cyan-400'
+                      : 'bg-green-500'
                   } text-black font-mono text-xs font-bold`}
                 >
                   {theaterVideo.code}
                 </span>
                 <span
                   className={`px-2 py-0.5 rounded ${
-                    theaterVideo.stage === 'stage2' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40' : 'bg-green-500/20 text-green-300 border-green-400/40'
+                    theaterVideo.stage === 'stage3'
+                      ? 'bg-purple-500/20 text-purple-300 border-purple-400/40'
+                      : theaterVideo.stage === 'stage2'
+                      ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40'
+                      : 'bg-green-500/20 text-green-300 border-green-400/40'
                   } border font-mono text-[11px] font-bold`}
                 >
                   [{theaterVideo.badge}]
