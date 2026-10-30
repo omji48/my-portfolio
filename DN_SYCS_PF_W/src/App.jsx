@@ -976,7 +976,7 @@ function App() {
                 College Self Learning Activity (SLA)
               </h3>
               <p className="text-gray-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-                2 Full-length subject video walkthroughs and syllabus breakdowns: Data Mining &amp; Warehousing (DMW) and Cyber Forensics (CF).
+                4 Full-length subject video walkthroughs and syllabus breakdowns: Automata &amp; Compiler Design (ACD), Data Mining &amp; Warehousing (DMW), Cyber Security Essentials (CSE), and Cyber Forensics (CF).
               </p>
             </div>
 
@@ -984,7 +984,7 @@ function App() {
               onClick={navigateToSLA}
               className="shrink-0 px-6 py-3 rounded-lg bg-green-500 hover:bg-green-400 text-black font-mono font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:scale-105"
             >
-              <span>▶</span> [OPEN SLA PORTAL (2 VIDEOS)]
+              <span>▶</span> [OPEN SLA PORTAL (4 VIDEOS)]
             </button>
           </motion.div>
           

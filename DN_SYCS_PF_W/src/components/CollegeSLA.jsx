@@ -3,6 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const subjectsData = [
   {
+    id: 'acd',
+    code: 'ACD',
+    title: 'Automata and Compiler Design',
+    videoFile: 'TYCS_25_ACD_SLA_01.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1PP9Hkx95UuoN3SyNz2L6dOYzHQ9lRfo-/preview',
+    driveUrl: 'https://drive.google.com/file/d/1PP9Hkx95UuoN3SyNz2L6dOYzHQ9lRfo-/view?usp=sharing',
+    size: '775 MB',
+    badge: 'STAGE 01'
+  },
+  {
     id: 'dmw',
     code: 'DMW',
     title: 'Data Mining and Warehousing',
@@ -10,6 +20,16 @@ const subjectsData = [
     embedUrl: 'https://drive.google.com/file/d/1y0AJ6Nb-Gr4XpZxYb5ro7rNXehFidggp/preview',
     driveUrl: 'https://drive.google.com/file/d/1y0AJ6Nb-Gr4XpZxYb5ro7rNXehFidggp/view?usp=sharing',
     size: '754 MB',
+    badge: 'STAGE 01'
+  },
+  {
+    id: 'cse',
+    code: 'CSE',
+    title: 'Cyber Security Essentials',
+    videoFile: 'TYCS_25_CSE_SLA_01.mp4',
+    embedUrl: 'https://drive.google.com/file/d/1SxtO0PufaP_HpprKQ6ijX-LyGBP3yVR_/preview',
+    driveUrl: 'https://drive.google.com/file/d/1SxtO0PufaP_HpprKQ6ijX-LyGBP3yVR_/view?usp=sharing',
+    size: '771 MB',
     badge: 'STAGE 01'
   },
   {
